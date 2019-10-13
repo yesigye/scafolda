@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scafolda Docs</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Scafolda is a php script that automatically generates fake data for your database">
+    <meta name="author" content="yesigye ignatius">
+    <meta name="keywords" content="authentication,automated,backend,codeigniter,dashboard,database,form validation,generator,populate">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">  
+      
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+</head> 
+
+<body class="body-blue">
+    <div class="page-wrapper">
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo mb-2">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Scafolda</span>
+                            <span class="text-bold">Docs</span>
+                        </a>
+                    </h1>
+                </div>
+            </div>
+        </header>
+        
+        <div class="doc-wrapper">
+            <div class="container">
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="one-section" class="doc-section">
+                                <h2 class="section-title">Installation</h2>
+                                <div id="step1"  class="section-block">
+                                    <h3 class="block-title">Step One</h3>
+                                    <p>
+                                        Unzip the contents of the archive file into your server web directory usually the www, http or the public folder.
+                                    </p>
+                                </div>
+                                
+                                <div id="step2"  class="section-block">
+                                    <h3 class="block-title">Step Two</h3>
+                                    <p>
+                                        Edit the the base url in the config file to point to your application's url. Remember to keep the trailing slash.
+                                        <pre><code class="language-php">$config['base_url'] = &quot;http://scafolda.test/&quot;;</code></pre>
+                                        You will find the config file at <code>application/config/config.php</code>
+                                    </p>
+                                </div>
+
+                                <div id="step3"  class="section-block">
+                                    <h3 class="block-title">Step Three</h3>
+                                    <p>
+                                        Edit the .htaccess file at root of your app installation. You must have mod_rewrite
+                                        enabled on your server for this step to work.
+                                        <br>
+                                        Depending on the location of the application directory on your server,
+                                        in the .htaccess file, edit this line as follows;
+                                        <br>
+                                        <ol>
+                                            <li>
+                                                If your app is at the root of your server directory. This is the default setting
+                                                <pre><code class="language-php">RewriteBase /</code></pre>
+                                            </li>
+                                            <li>
+                                                If your app is in a directory (assuming your directory name is "admin")
+                                                <pre><code class="language-php">RewriteBase /admin/</code></pre>
+                                            </li>
+                                            <li>
+                                                For subsequent directories, set the path to your app directory. Remember the trailing slash.
+                                                <pre><code class="language-php">RewriteBase /directory/sub-directory/</code></pre>
+                                            </li>
+                                        </ol>
+                                        <div id="step4"  class="section-block">
+                                            <h3 class="block-title">Step Three</h3>
+                                            <p>
+                                                Connecting to your database.
+                                                <p></p>
+                                                Scafolda will prompt you to enter your database connection values at the login page. This is the
+                                                default method of authentication. If you do not want to change this, then this step is not required.
+                                                <p></p>
+                                                However if you want to disable this authentication option, you must set database values
+                                                in the database config file at <code>application/config/database.php</code>
+
+                                                <div class="code-block">
+                                                    <h6>Database connection example</h6>
+                                                    <pre><code class="language-php">'hostname' => 'localhost',
+        'username' => 'demo_user',
+        'password' => 'my_secret',
+        'database' => 'demo_database',</code></pre>
+                                                Additional configuration can be found in the database config file.
+                                                </div>
+                                                <p></p>
+                                                To read more about Scafolda authentication, go to
+                                                <a class="scrollto" href="#one-section" role="tab" data-toggle="tab">authentication section</a>
+                                            </p>
+                                        </div>
+                                    </p>
+                                </div>
+                            </section>
+                            
+                            <section id="two-section" class="doc-section">
+                                <h2 class="section-title">Authentication</h2>
+                                <div class="section-block">
+                                    <p>
+                                        The script uses your database connection as the default method of authentication.
+                                        At the login prompt, you will enter your database server's hostname, the database you are
+                                        connecting to and your server's username and password.
+                                    </p>
+                                </div>
+                                    
+                                <div id="auth-inbuilt" class="section-block">
+                                    <h3 class="block-title">Login system</h3>
+                                    <p>
+                                        This is the default way of connecting to your database. You are required to enter your
+                                        database server credentials to access your Scafolda dashboard.
+                                    </p>
+                                    <div class="row">
+                                            <div class="col-md-6 screenshot">
+                                                <img src="images/login.png" alt="" class="thumbnail img-fluid">
+                                                <div class="text-muted">screenshot: login screen</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <table class="table" style="font-size:inherit">
+                                                    <thead class="bg-light">
+                                                        <tr>
+                                                            <th>Field</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>hostname</td>
+                                                            <td>The database server's hostname</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>database</td>
+                                                            <td>The database you are conecting to</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>username</td>
+                                                            <td>The username for your server</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>password</td>
+                                                            <td>The password for your server</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="text-muted">Authentication field descriptions</div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div id="auth-coded" class="section-block">
+                                    <h3 class="block-title">Auto Login</h3>
+                                    Set Scafolda to skip the login screen by pre configuring your database credentials in a config file.
+                                    In some cases, you may want to use your own login protocols, these could be cases where you want to use a more standard username/email
+                                    and password login system.
+                                    <p></p>
+                                    <h6>Disabling the default login system</h6>
+                                    These are the steps you need to take to disable the default login method of authentication
+                                    <ol class="mt-1">
+                                        <li>
+                                            Set authentication option from true to false
+                                            <div class="code-block mt-0">
+                                                <pre><code class="language-php">'authentication' => false,</code></pre>
+                                                <b>file location</b> <span class="ml-2 text-muted">application/config/dashman.php</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            Set your database credentials
+                                            <div class="code-block mt-0">
+                                                    <pre><code class="language-php">'hostname' => 'localhost',
+'username' => 'demo_user',
+'password' => 'my_secret',
+'database' => 'demo_database',</code></pre>
+                                                    <b>file location</b> <span class="ml-2 text-muted">application/config/database.php</span>
+                                                </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </section>
+
+                            <section id="three-section" class="doc-section">
+                                <h2 class="section-title">Dashboard</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Dashboard is an interface the provides you with a simple and
+                                        intiutive way to manage your application. This is Scafolda's
+                                        core feature, the dashboard tools allow you to add data for your
+                                        app and manipulate it with ease.
+                                    </p>
+                                </div>
+
+                                <div id="dash-home" class="section-block">
+                                    <h3 class="block-title">Home Page</h3>
+                                    <p>
+                                        This is the first page that you see after successfully logging into Scafolda.
+                                        The home page aims at showing at a glance, the general overview of your application 
+                                        by displaying cards with key information, statistics, charts, recently added items and more...
+                                        <br>
+                                        What cards you see is determined by the structure and the contents of your database.
+                                    </p>
+                                    <img src="images/1-dashboard.png" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    <div class="text-muted">screenshot: home page screen</div>
+                                </div>
+                                
+                                <div id="dash-table" class="section-block">
+                                    <h3 class="block-title">Displaying data</h3>
+                                    <p>
+                                        Scafolda offers a covenient way to access and quickly manipulate data in your tables.
+                                        Data is presented in a tabular design which makes it easy to read and understand.
+                                        Scafolda employees unique features like character limiters, thumbnail generators and
+                                        field detection to ensure that the data is presented in a simple and yet relevant way.
+                                        <br><br>
+                                        For example, Scafolda will know to present image url strings as thumbnails, trucante long sentences or
+                                        descriptions that might not fit on the viewport, recognize boolean data types and intergers, map table
+                                        relationships and more. This makes for an intuitive table that is compact and easy to read.
+                                        <br><br>
+                                    </p>
+                                    <img src="images/2-table-view.png" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    <div class="text-muted">screenshot: display table page</div>
+                                </div>
+                            </section>
+
+                            <section id="four-section" class="doc-section">
+                                <h2 class="section-title">Data manipulation</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Scafolda provides different tools to quickly adding new data, change it or remove it.
+                                        Tools like form generators and validation tools work to ensure that your data stays
+                                        consistent and true. 
+                                    </p>
+                                </div>
+
+                                <div id="dash-datatabase" class="section-block">
+                                    <h3 class="block-title">Datatables</h3>
+                                    <p>
+                                        Scafolda uses datatables to easily load data and manipulate it without
+                                        reloading the entire page.
+                                    </p>
+                                    <strong>Features of datatables</strong>
+                                    <ol>
+                                        <li>
+                                            You can add a new row to the table.
+                                        </li>
+                                        <li>
+                                            You can automatically generate fake for your table.
+                                        </li>
+                                        <li>
+                                            You can search instantly for data within the table.
+                                        </li>
+                                        <li>
+                                            You can edit column values directly by double clicking it to open an inline editor.
+                                        </li>
+                                        <li>
+                                            You can delete individual rows or multiple rows at a time.
+                                        </li>
+                                        <li>
+                                            You can empty the entire table.
+                                        </li>
+                                        <li>
+                                            You can download an Excel or PDF copy of your table.
+                                        </li>
+                                    </ol>
+                                    <img src="images/2-table-view.png" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    <div class="text-muted">screenshot: datatable with inline editing</div>
+                                </div>
+
+                                <div id="dash-add" class="section-block">
+                                    <h3 class="block-title">Adding Data</h3>
+                                    <p>
+                                        Scafolda's Form Generator creates robust forms for adding entity data into the
+                                        appropriate tables in your database. It uses your table stucture to generate relevant
+                                        form fields and also takes into account the tables relationships in the database.
+                                    </p>
+                                    <img src="images/add.PNG" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    <div class="text-muted">screenshot: add entity screen</div> 
+                                </div>
+
+                                <div id="dash-generate" class="section-block">
+                                    <h3 class="block-title">Generating Data</h3>
+                                    <p>
+                                        Scafold uses special providers to add fake data into your table. In the
+                                        <a href="#dash-add">previous section</a>, we saw how data is added through a more traditional
+                                        form filling style where you explicitly enter column data. While generating data however,
+                                        fake data will be randomly entered depending on the data type of the column. You can generate
+                                        data in one of two ways;
+                                    </p>
+                                    <ol>
+                                        <li>
+                                            <h4>Auto Selection</h4>
+                                            The system decides on what kind of data to generate for each field in the table.
+                                            It achieves this by analyzing the column type, constraints and even name to determine what
+                                            type of data is expected. This means that even though data is generated randomly, it remains
+                                            true to your schema.
+                                            <p class="mt-2">
+                                                For auto selection, you only need to define the number of rows that you want to generate.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <h4>Manual Selection</h4>
+                                            Scafolda give you the option to specify the type of data that you want to generate for every column.
+                                            There is a huge pool of over 50 data types that you can choose from to represent your data perfectly.
+                                            However, the actual data generated that is still randomly generated. If you want to enter data directly,
+                                            use the <a href="#dash-add">traditional forms</a> instead of data type generators.
+                                            <img src="images/3-generate-section.png" alt="" class="img-thumbnail thumbnail img-fluid mt-2">
+                                            <div class="text-muted">screenshot: choosing data type screen</div>
+                                        </li>
+                                    </ol>
+                                    <img src="images/add.PNG" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    <div class="text-muted">screenshot: add entity screen</div>
+                                </div>
+
+                                <div id="dash-edit" class="section-block">
+                                    <h3 class="block-title">Editing Data</h3>
+                                    <p>
+                                        You can quickly edit data using datatabes inline editing feature.
+                                        This is a useful option if you just want to edit a column or delete a record.
+                                    </p>
+                                    <p>
+                                        <img src="images/inline-edit-zoom.png" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    </p>
+                                    <p>
+                                        However, for more robut editing option, you will need to got to the editing page
+                                        by click the edit
+                                        <button class="btn btn-outline-primary btn-sm" disabled><i class="fa fa-edit m-0"></i></button>
+                                        action button next to the row you want to edit.
+                                    </p>
+
+                                    <h6 class="mt-4">Editing Page</h6>
+                                    <p>
+                                        Generator creates robust forms for adding entity data into the
+                                        appropriate tables in your database. It uses your table stucture to generate relevant
+                                        form fields and also takes into account the tables relationships in the database.
+                                    </p>
+                                    <img src="images/7-table-row-view.png" alt="" class="img-thumbnail thumbnail img-fluid">
+                                    <div class="text-muted">screenshot: Editing screen</div> 
+                                </div>
+
+                                <div id="dash-delete" class="section-block">
+                                    <h3 class="block-title">Deleting Data</h3>
+                                    <img src="images/docs-delete.png" alt="" class="img-thumbnail thumbnail img-fluid mb-3">
+                                    <p>
+                                        Rows can be deleted by clicking the delete icon <span class="close float-none">&times</span>
+                                        coveniently placed at the end of every row.
+                                    </p>
+                                    <h6 class="mt-4">Batch delete</h6>
+                                    Deleting in bulk is also supported with the batch deleting feature. To delete multiple rows; select the rows that you
+                                    want to delete by clicking on the rows or clicking the checkboxes at the front of every row. Once you have checked
+                                    your rows, click the delete button in the toolbar at the top of the table.
+                                    <h6 class="mt-4">How delete works</h6>
+                                    <p>
+                                        Deleting rows from the database is achieved in one of two ways; deleting by a unique column or deleting by row position.
+                                        When deleting rows, the system checks for a unique key in the table and uses that column as a reference to delete the row.
+                                        If the table does not have any unique keys, the row will be deleted by its counting position in the table, this is especially
+                                        useful since not all tables have an "id".
+                                    </p>
+                                    <div class="alert alert-danger mt-4 py-4">
+                                        When deleting a row from a table by position, the where clause uses all columns for reference,
+                                        this means that duplicate rows are also deleted. 
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-link scrollto" href="#one-section">Installation</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#step1">Step One</a>
+                                    <a class="nav-link scrollto" href="#step2">Step Two</a>
+                                    <a class="nav-link scrollto" href="#step3">Step Three</a>
+                                    <a class="nav-link scrollto" href="#step4">Step Four</a>
+                                </nav>
+                                <a class="nav-link scrollto" href="#two-section">Authentication</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#auth-inbuilt">Login System</a>
+                                    <a class="nav-link scrollto" href="#auth-coded">Auto Login</a>
+                                </nav>
+                                <a class="nav-link scrollto" href="#three-section">Dashboard</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#dash-home">Home page</a>
+                                    <a class="nav-link scrollto" href="#dash-table">Displaying data</a>
+                                </nav>
+                                <a class="nav-link scrollto" href="#four-section">Data manipulation</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#dash-datatabase">Datatabases</a>
+                                    <a class="nav-link scrollto" href="#dash-add">Adding data</a>
+                                    <a class="nav-link scrollto" href="#dash-generate">Generating data</a>
+                                    <a class="nav-link scrollto" href="#dash-edit">Editing Data</a>
+                                    <a class="nav-link scrollto" href="#dash-delete">Deleting Data</a>
+                                </nav>
+                            </nav>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+        
+        <section id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                    <h3 class="promo-title text-center text-dark">Focus on the frontend. Dashman will automatically generate your dashboard</h3>
+                    <div class="row">
+                        <div class="figure-holder col-lg-5 col-md-6 col-12">
+                            <div class="figure-holder-inner">
+                                <a href="https://codecanyon.net/item/backend-dashboard-generator/24541680" target="_blank">
+                                    <img
+                                    class="img-fluid rounded"
+                                    src="https://codecanyon.img.customer.envatousercontent.com/files/270971759/preview-590x300.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=d20e5d88fb707b368d2c5372cf95da61"
+                                    alt="Dashman" />
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="content-holder col-lg-7 col-md-6 col-12">
+                            <div class="content-holder-inner">
+                                <div class="desc">
+                                    <h4 class="content-title"><strong> Dashman - Backend Dashboard Generator</strong></h4>
+                                    <p>
+                                        Check out <a href="https://codecanyon.net/item/backend-dashboard-generator/24541680" target="_blank">Dashman</a>
+                                        - Dashman is a php script that automatically generates a working admin dashboard from your database.
+                                        Dashman presents data in a beautiful and familiar way based on database, it generats different
+                                        cards to show graphs, images, statistics, quick facts, info cards, icons and more
+                                    </p>
+                                    <a class="btn btn-cta" href="https://codecanyon.net/item/backend-dashboard-generator/24541680" target="_blank"><i class="fas fa-external-link-alt"></i> More Details</a>
+                                </div>
+                                
+                                <div class="author"><a href="http://yesigye.com">Author - ignatius yesigye</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
+        </div>
+    </footer>
+      
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+</html>
